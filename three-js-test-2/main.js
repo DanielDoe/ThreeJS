@@ -1,4 +1,4 @@
-let scene, camera, renderer, cube;
+let scene, camera, renderer, cube, lightening, effect;
 
 // function to initialize my scene, renderer and camera properties,
 function init() {
@@ -15,6 +15,9 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
+    effect = new THREE.AnaglyphEffect(renderer);
+    effect.setSize(window.innerWidth, window.innerHeight);
+
     controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     // create my shape
@@ -22,13 +25,31 @@ function init() {
 
     // right, left, top, bottom, front, back
     const cubeMaterials = [
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./imgs/IMG_3531.JPG"), side: THREE.DoubleSide }),
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./imgs/IMG_3532.JPG"), side: THREE.DoubleSide }),
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./imgs/IMG_6086.JPG"), side: THREE.DoubleSide }),
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./imgs/IMG_6087.JPG"), side: THREE.DoubleSide }),
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./imgs/IMG_1925.JPG"), side: THREE.DoubleSide }),
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load("./imgs/IMG_1926.JPG"), side: THREE.DoubleSide }),
-    ]
+        new THREE.MeshBasicMaterial({
+            map: new THREE.TextureLoader().load("./imgs/IMG_3531.JPG"),
+            side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+            map: new THREE.TextureLoader().load("./imgs/IMG_3532.JPG"),
+            side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+            map: new THREE.TextureLoader().load("./imgs/IMG_6086.JPG"),
+            side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+            map: new THREE.TextureLoader().load("./imgs/IMG_6087.JPG"),
+            side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+            map: new THREE.TextureLoader().load("./imgs/IMG_1925.JPG"),
+            side: THREE.DoubleSide,
+        }),
+        new THREE.MeshBasicMaterial({
+            map: new THREE.TextureLoader().load("./imgs/IMG_1926.JPG"),
+            side: THREE.DoubleSide,
+        }),
+    ];
 
     // create my material textures and colors
     // const material = new THREE.MeshBasicMaterial({ color: 0x0000ff });
@@ -38,6 +59,7 @@ function init() {
     scene.add(cube);
 
     camera.position.z = 5;
+    // lightening = new THREE.AmbientLight()
 }
 
 // function to animate my scene and call for update or any repetitions
